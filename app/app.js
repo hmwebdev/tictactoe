@@ -47,6 +47,10 @@ const Game = (() => {
     }
   };
 
+  const lookEmptyField = (el) => {
+    return el === "";
+  };
+
   const checkWinner = () => {
     console.log("Lomer");
 
@@ -69,6 +73,7 @@ const Game = (() => {
       [1, 4, 7],
       [2, 5, 8],
       [0, 4, 8],
+      [2, 4, 6],
     ];
 
     //let x = valuesToWin.every((position) => position.X.includes(position));
@@ -83,7 +88,8 @@ const Game = (() => {
       hasValues(positions.X, valuesToWin[3]) === true ||
       hasValues(positions.X, valuesToWin[4]) === true ||
       hasValues(positions.X, valuesToWin[5]) === true ||
-      hasValues(positions.X, valuesToWin[6]) === true
+      hasValues(positions.X, valuesToWin[6]) === true ||
+      hasValues(positions.X, valuesToWin[7]) === true
     ) {
       winner = player1.name;
       messageBox.innerHTML = "The winner is " + winner;
@@ -95,11 +101,16 @@ const Game = (() => {
       hasValues(positions.O, valuesToWin[3]) === true ||
       hasValues(positions.O, valuesToWin[4]) === true ||
       hasValues(positions.O, valuesToWin[5]) === true ||
-      hasValues(positions.O, valuesToWin[6]) === true
+      hasValues(positions.O, valuesToWin[6]) === true ||
+      hasValues(positions.O, valuesToWin[7]) === true
     ) {
       winner = player2.name;
       messageBox.innerHTML = "The winner is " + winner;
       console.log(winner);
+    } else {
+      if (board.find(lookEmptyField) === undefined) {
+        messageBox.innerHTML = "Tied game";
+      }
     }
 
     console.log(positions);
