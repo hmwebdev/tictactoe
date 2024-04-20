@@ -11,28 +11,23 @@ const Game = (() => {
 
   const placeMarker = (el) => {
     const targetIndex = board[`${el.target.id}`];
-    console.log(el.target);
 
     if (symbol === "") {
       symbol = player1.symbol;
-      console.log(symbol);
       if (targetIndex === "") {
         board.splice(`${el.target.id}`, 1, symbol);
-        console.log(board);
       }
     } else if (symbol === player1.symbol) {
       symbol = player2.symbol;
       winner = player2.name;
       if (targetIndex === "") {
         board.splice(`${el.target.id}`, 1, symbol);
-        console.log(board);
       }
     } else if (symbol === player2.symbol) {
       symbol = player1.symbol;
       winner = player2.name;
       if (targetIndex === "") {
         board.splice(`${el.target.id}`, 1, symbol);
-        console.log(board);
       }
     }
 
@@ -52,8 +47,6 @@ const Game = (() => {
   };
 
   const checkWinner = () => {
-    console.log("Lomer");
-
     const positions = {
       X: [],
       O: [],
@@ -93,7 +86,6 @@ const Game = (() => {
     ) {
       winner = player1.name;
       messageBox.innerHTML = "The winner is " + winner;
-      console.log(winner);
     } else if (
       hasValues(positions.O, valuesToWin[0]) === true ||
       hasValues(positions.O, valuesToWin[1]) === true ||
@@ -106,14 +98,11 @@ const Game = (() => {
     ) {
       winner = player2.name;
       messageBox.innerHTML = "The winner is " + winner;
-      console.log(winner);
     } else {
       if (board.find(lookEmptyField) === undefined) {
         messageBox.innerHTML = "Tied game";
       }
     }
-
-    console.log(positions);
   };
 
   const cases = Array.from(document.getElementsByClassName("box"));
